@@ -675,6 +675,14 @@ h2{
   outline:none;
 }
 .form-line:focus{border-bottom-color:var(--teal);}
+.form-field-label{
+  font-family:'Courier Prime',monospace;font-size:0.72rem;
+  letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-mid);
+}
+.form-privacy-note{
+  font-size:0.72rem;color:var(--ink-faded);letter-spacing:0.04em;
+  font-style:italic;line-height:1.5;
+}
 .chk-group{margin:0.5rem 0 1.5rem 0;}
 .chk-section-label{
   font-size:7.5px;letter-spacing:0.18em;text-transform:uppercase;
@@ -685,7 +693,8 @@ h2{
   letter-spacing:0.03em;margin-bottom:0.5rem;
   display:flex;align-items:center;gap:0.55rem;cursor:pointer;
 }
-.chk-box{color:var(--ink-faded);}
+.chk-box{color:var(--ink-faded);font-family:'Courier Prime',monospace;min-width:2ch;}
+.chk input[type=checkbox]{position:absolute;opacity:0;width:0;height:0;pointer-events:none;}
 .fee-line{
   font-size:0.8rem;color:var(--ink-faded);
   letter-spacing:0.1em;text-transform:uppercase;
@@ -1050,8 +1059,10 @@ h2{
           60 minutes is all it takes.
         </div>
         <div id="form-state">
-          <div class="form-row">
-            <input class="form-line" id="f-email" type="email" placeholder="your email (optional — only if you want a reply)" aria-label="Your email address">
+          <div class="form-row" style="flex-direction:column;align-items:flex-start;gap:0.4rem;">
+            <label class="form-field-label" for="f-email">YOUR EMAIL ADDRESS <span style="color:var(--stamp-red);">*</span></label>
+            <input class="form-line" id="f-email" type="email" placeholder="needed to confirm your session time" aria-label="Your email address" required>
+            <span class="form-privacy-note">Used only to schedule your session. Never shared with your employer or any third party. We ask for nothing else.</span>
           </div>
           <div class="form-row" style="flex-direction:column;align-items:flex-start;">
             WHAT BRINGS YOU HERE:
@@ -1204,7 +1215,8 @@ document.querySelectorAll('.tab[href^="#"]').forEach(function(tab){
 });
 
 document.querySelectorAll('.chk').forEach(function(lbl){
-  lbl.addEventListener('click',function(){
+  lbl.addEventListener('click',function(e){
+    e.preventDefault();
     var box=this.querySelector('.chk-box');
     var inp=this.querySelector('input[type=checkbox]');
     if(inp){
@@ -1216,7 +1228,14 @@ document.querySelectorAll('.chk').forEach(function(lbl){
 
 async function submitRequest(){
   var btn=document.getElementById('submit-btn');
-  var emailVal=(document.getElementById('f-email')||{}).value||'';
+  var emailField=document.getElementById('f-email');
+  var emailVal=emailField?emailField.value.trim():'';
+  if(!emailVal){
+    emailField.style.borderBottom='2px solid var(--stamp-red)';
+    emailField.placeholder='email required to book your session';
+    emailField.focus();
+    return;
+  }
   var checked=Array.from(document.querySelectorAll('.chk-group input[type=checkbox]:checked')).map(function(c){return c.value;});
   var message=checked.length?checked.join('; '):'No specific reason given';
 
