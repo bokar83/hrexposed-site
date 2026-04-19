@@ -1,838 +1,1229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HR Exposed - HR without the corporate spin</title>
-    <meta name="description" content="The truths HR won't tell you. Get insider answers that protect your career and help you win reviews, interviews, and tough conversations.">
-    <link rel="canonical" href="https://hrexposed.net">
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://hrexposed.net">
-    <meta property="og:title" content="HR Exposed - HR without the corporate spin">
-    <meta property="og:description" content="The truths HR won't tell you. Get insider answers that protect your career and help you win reviews, interviews, and tough conversations.">
-    <meta property="og:image" content="https://hrexposed.net/og-image.jpg">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://hrexposed.net">
-    <meta property="twitter:title" content="HR Exposed - HR without the corporate spin">
-    <meta property="twitter:description" content="The truths HR won't tell you. Get insider answers that protect your career and help you win reviews, interviews, and tough conversations.">
-    <meta property="twitter:image" content="https://hrexposed.net/og-image.jpg">
-    
-    <!-- JSON-LD FAQ Schema -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "Is this legal advice",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "No. This is educational HR coaching. Laws vary by state and country. For legal advice, talk to a lawyer."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Who is this for",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Employees and job seekers who want clear, practical HR guidance for reviews, interviews, and tricky situations."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What happens in a 30-minute call",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "We focus on your top three issues. You leave with a one-page plan and exact phrases to use."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Do you offer refunds",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Calls are non-refundable once delivered. If a booking issue occurs, we will make it right."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What if I am not ready to book",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Join the waitlist. You will get one practical tip and a reminder when new call slots open."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Can my employer find out I booked a call?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "No. Calls are private and confidential. Nothing is shared."
-                }
-            }
-        ]
-    }
-    </script>
-    
-    <style>
-        /* Reset and base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        :root {
-            --bg-primary: #F3F6F9;
-            --bg-secondary: #071A2E;
-            --bg-card: white;
-            --text-primary: #1E222A;
-            --text-secondary: #F3F6F9;
-            --accent-primary: #00B7C2;
-            --accent-secondary: #FF7A00;
-            --border-color: #e0e0e0;
-        }
-        
-        [data-theme="dark"] {
-            --bg-primary: #1E222A;
-            --bg-secondary: #071A2E;
-            --bg-card: #2A2F3A;
-            --text-primary: #F3F6F9;
-            --text-secondary: #F3F6F9;
-            --accent-primary: #00B7C2;
-            --accent-secondary: #FF7A00;
-            --border-color: #404040;
-        }
-        
-        body {
-            font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background-color: var(--bg-primary);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        
-        /* Container */
-        .container {
-            max-width: 1040px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        
-        /* Header */
-        header {
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            padding: 1.5rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            transition: background-color 0.3s ease;
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .theme-toggle {
-            background: transparent;
-            border: 2px solid var(--accent-primary);
-            color: var(--accent-primary);
-            padding: 0.5rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: all 0.2s ease;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .theme-toggle:hover {
-            background: var(--accent-primary);
-            color: var(--bg-secondary);
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--accent-primary);
-        }
-        
-        .logo img {
-            height: 60px;
-            width: 60px;
-            object-fit: contain;
-        }
-        
-        .header-cta {
-            background: #FF7A00;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: background-color 0.2s ease;
-        }
-        
-        .header-cta:hover {
-            background: #e66a00;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #071A2E 0%, #00B7C2 100%);
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-        
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0.95;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HR Exposed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Special+Elite&family=Bebas+Neue&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+/* TOKENS */
+:root {
+  --paper: #F2ECD8;
+  --paper-aged: #E5DCBF;
+  --paper-edge: #CFC3A0;
+  --ink: #1C1510;
+  --ink-mid: #3E3020;
+  --ink-faded: #7A6A4A;
+  --redact: #111;
+  --stamp-red: #9E1F1A;
+  --gold: #B8922A;
+  --gold-dim: #8A6B1A;
+  --teal: #2A7B7B;
+  --bureau: #080808;
+  --bureau-mid: #101010;
+  --white-warm: #EAE6DC;
+  --amber: #D4A017;
+}
 
-        .hero .inline-form-intro {
-            font-size: 1.05rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-        }
+/* RESET */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Courier Prime','Courier New',monospace;
+  background:var(--bureau);
+  color:var(--ink);
+  overflow-x:hidden;
+  cursor:default;
+}
 
-        .btn-primary {
-            background: #FF7A00;
-            color: white;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.2s ease;
-            display: inline-block;
-        }
-        
-        .btn-primary:hover {
-            background: #e66a00;
-            transform: translateY(-2px);
-        }
-        
-        .btn-secondary {
-            background:  #071A2E;
-            color: white;
-            border: 2px solid white;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.2s ease;
-            display: inline-block;
-        }
+/* CUSTOM CURSOR */
+.cursor-dot{
+  position:fixed;width:6px;height:6px;
+  background:var(--amber);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform 0.1s ease;
+}
+.cursor-ring{
+  position:fixed;width:28px;height:28px;
+  border:1px solid rgba(212,160,23,0.4);border-radius:50%;
+  pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:transform 0.18s ease,width 0.2s ease,height 0.2s ease;
+}
 
-        .btn-secondary:hover {
-            background: var(--accent-primary);
-            color: var(--bg-secondary);
-        }
+/* HEADER */
+.hdr{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:48px;
+  background:var(--paper-aged);
+  border-bottom:1px solid var(--gold);
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 2.5rem;
+}
+.hdr-brand{
+  display:flex;align-items:center;gap:0.75rem;
+  padding-bottom:8px;
+}
+.hdr-stamp{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:15px;letter-spacing:0.12em;
+  color:var(--stamp-red);
+  border:1.5px solid var(--stamp-red);
+  padding:0 7px 1px;
+}
+.hdr-url{
+  font-size:11px;color:var(--ink-faded);
+  letter-spacing:0.08em;
+}
 
-        .email-form {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
+/* TABS */
+.tabs{display:flex;gap:2px;align-items:flex-end;}
+.tab{
+  font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  padding:7px 16px 6px;
+  border:1px solid var(--gold-dim);
+  border-bottom:none;
+  border-radius:4px 4px 0 0;
+  cursor:pointer;
+  text-decoration:none;display:block;
+  transition:transform 150ms ease-out,box-shadow 150ms ease-out,background 150ms;
+}
+.tab:hover{transform:translateY(-4px);box-shadow:0 6px 16px rgba(0,0,0,0.2);}
+.tab.on{background:var(--paper);color:var(--ink);border-top:2px solid var(--gold);}
+.tab.off{background:var(--paper-aged);color:var(--ink-faded);}
+.tab.go{
+  background:var(--stamp-red);color:#fff;
+  border-color:var(--stamp-red);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:11px;letter-spacing:0.18em;
+}
+.tab.go:hover{background:#7a1512;}
 
-        .email-input {
-            padding: 0.85rem 1rem;
-            border-radius: 8px;
-            border: none;
-            min-width: 260px;
-            font-size: 1rem;
-        }
+/* HERO */
+.hero{
+  min-height:100vh;
+  background:var(--bureau);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  padding:100px 2rem 6rem;
+}
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    0deg,rgba(0,0,0,0.18) 0px,rgba(0,0,0,0.18) 1px,
+    transparent 1px,transparent 3px
+  );
+  pointer-events:none;z-index:3;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(184,146,42,0.12) 1px,transparent 1px);
+  background-size:28px 28px;
+  pointer-events:none;z-index:1;
+}
 
-        .visually-hidden {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
+.hero-glow{
+  position:absolute;top:-80px;left:-80px;
+  width:400px;height:400px;
+  background:radial-gradient(circle,rgba(158,31,26,0.18) 0%,transparent 70%);
+  pointer-events:none;z-index:2;
+}
 
-        .email-submit {
-            background: #00B7C2;
-            color: white;
-            border: none;
-            padding: 0.9rem 1.75rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-        }
+.hero-inner{
+  position:relative;z-index:10;
+  max-width:760px;width:100%;
+  display:flex;flex-direction:column;gap:2.5rem;
+}
 
-        .email-submit:hover {
-            background: #0092a4;
-            transform: translateY(-2px);
-        }
+.access-label{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:11px;letter-spacing:0.22em;
+  color:rgba(255,40,40,0.85);
+  border:1px solid rgba(255,40,40,0.35);
+  display:inline-flex;align-items:center;gap:0.5rem;
+  padding:4px 12px;
+  box-shadow:0 0 16px rgba(255,32,32,0.2);
+  width:fit-content;
+  opacity:0;
+  animation:fIn 0.5s ease forwards 0.4s;
+}
+.access-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,40,40,0.85);
+  animation:blink 1.2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+@keyframes fIn{to{opacity:1;}}
 
-        .form-note {
-            font-size: 0.85rem;
-            text-align: center;
-            margin-top: 0.5rem;
-            opacity: 0.8;
-        }
-        
-        .micro-trust {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            font-style: italic;
-        }
-        
-        /* Main Content */
-        main {
-            padding: 4rem 0;
-        }
-        
-        .section {
-            margin-bottom: 4rem;
-        }
-        
-        .section h2 {
-            font-size: 2.5rem;
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        
-        .section h3 {
-            font-size: 2rem;
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        
-        .enemy-statement {
-            background: var(--bg-card);
-            padding: 3rem 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 3rem;
-            transition: background-color 0.3s ease;
-        }
-        
-        .enemy-statement p {
-            font-size: 1.2rem;
-            color: var(--text-primary);
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .value-bullets {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .bullet {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: background-color 0.3s ease;
-        }
-        
-        .bullet h4 {
-            font-size: 1.5rem;
-            color: var(--accent-primary);
-            margin-bottom: 1rem;
-        }
-        
-        .bullet p {
-            color: var(--text-primary);
-            font-size: 1.1rem;
-        }
-        
-        /* Social Proof */
-        .social-proof {
-            background: var(--bg-card);
-            padding: 3rem 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
-        }
-        
-        .testimonials {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .testimonial {
-            background: var(--bg-primary);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-primary);
-            transition: background-color 0.3s ease;
-        }
-        
-        .testimonial p {
-            font-style: italic;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-        
-        .testimonial .author {
-            font-weight: 600;
-            color: var(--accent-primary);
-        }
-        
-        /* FAQ Section */
-        .faq {
-            background: var(--bg-card);
-            padding: 3rem 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
-        }
-        
-        .faq-item {
-            margin-bottom: 1rem;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: border-color 0.3s ease;
-        }
-        
-        .faq-item summary {
-            padding: 1.5rem;
-            background: var(--bg-primary);
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--text-primary);
-            list-style: none;
-            position: relative;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        
-        .faq-item summary::after {
-            content: '+';
-            position: absolute;
-            right: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.5rem;
-            color: var(--accent-primary);
-        }
-        
-        .faq-item[open] summary::after {
-            content: '−';
-        }
-        
-        .faq-item summary::-webkit-details-marker {
-            display: none;
-        }
-        
-        .faq-item p {
-            padding: 1.5rem;
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            padding: 3rem 0 2rem;
-            text-align: center;
-            transition: background-color 0.3s ease;
-        }
-        
-        .footer-nav {
-            margin-bottom: 2rem;
-        }
-        
-        .footer-nav a {
-            color: var(--accent-primary);
-            text-decoration: none;
-            margin: 0 1rem;
-            transition: color 0.2s ease;
-        }
-        
-        .footer-nav a:hover {
-            color: var(--text-secondary);
-        }
-        
-        .disclaimer {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 0.75rem;
-            }
-            
-            .hero {
-                padding: 3rem 0;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-                line-height: 1.1;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-                margin-bottom: 2rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.75rem;
-            }
-            
-            .btn-primary,
-            .btn-secondary {
-                width: 100%;
-                max-width: 320px;
-                text-align: center;
-                padding: 1rem 1.5rem;
-            }
-            
-            .section h2 {
-                font-size: 2rem;
-                line-height: 1.2;
-            }
-            
-            .section h3 {
-                font-size: 1.5rem;
-                line-height: 1.3;
-            }
-            
-            .value-bullets {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-                margin: 2rem 0;
-            }
-            
-            .bullet {
-                padding: 1.5rem;
-            }
-            
-            .testimonials {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .header-content {
-                flex-direction: row;
-                gap: 1rem;
-            }
-            
-            .header-right {
-                gap: 0.75rem;
-            }
-            
-            .theme-toggle {
-                width: 36px;
-                height: 36px;
-                font-size: 1rem;
-            }
-            
-            .logo img {
-                height: 50px;
-                width: 50px;
-            }
-            
-            .logo {
-                font-size: 1.25rem;
-            }
-            
-            .enemy-statement {
-                padding: 2rem 1.5rem;
-            }
-            
-            .social-proof {
-                padding: 2rem 1.5rem;
-            }
-            
-            .faq {
-                padding: 2rem 1.5rem;
-            }
-            
-            .faq-item summary {
-                padding: 1.25rem;
-                font-size: 0.95rem;
-            }
-            
-            .faq-item p {
-                padding: 1.25rem;
-                font-size: 0.95rem;
-            }
+.tw{
+  font-family:'Courier Prime',monospace;
+  font-size:clamp(1.5rem,3.5vw,2.1rem);
+  line-height:1.65;
+  color:var(--white-warm);
+  letter-spacing:0.01em;
+  min-height:7rem;
+}
+.tw-c{
+  display:inline-block;width:11px;height:1.1em;
+  background:var(--amber);vertical-align:text-bottom;
+  animation:blink 0.55s step-start infinite;
+}
 
-            .email-form {
-                flex-direction: column;
-                align-items: stretch;
-            }
+.hero-sub{
+  font-size:0.88rem;color:var(--ink-faded);
+  letter-spacing:0.06em;text-transform:uppercase;
+  opacity:0;transition:opacity 0.5s ease;
+  display:flex;align-items:center;gap:1rem;
+}
+.hero-sub.show{opacity:1;}
+.hero-sub-divider{width:40px;height:1px;background:var(--gold-dim);}
 
-            .email-input,
-            .email-submit {
-                width: 100%;
-                max-width: 320px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 0.5rem;
-            }
-            
-            .hero {
-                padding: 3rem 0;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .section {
-                margin-bottom: 3rem;
-            }
-        }
-    </style>
+.hero-stats{
+  display:flex;gap:3rem;
+  opacity:0;transform:translateY(16px);
+  transition:opacity 0.6s ease,transform 0.6s ease;
+}
+.hero-stats.show{opacity:1;transform:translateY(0);}
+.stat-item{display:flex;flex-direction:column;gap:0.2rem;}
+.stat-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2.8rem;line-height:1;
+  color:var(--gold);letter-spacing:0.04em;
+}
+.stat-label{
+  font-size:8px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--ink-faded);
+}
+
+.scroll-cue{
+  position:absolute;bottom:2.5rem;left:50%;
+  transform:translateX(-50%);
+  font-size:9px;letter-spacing:0.18em;
+  color:rgba(122,106,74,0.7);text-transform:uppercase;
+  animation:pulse 2.5s ease-in-out infinite;
+  z-index:10;
+}
+@keyframes pulse{0%,100%{opacity:0.35;}50%{opacity:0.9;}}
+
+.paper-wrap{
+  position:relative;z-index:20;
+  transform:translateY(110px);opacity:0;
+}
+.paper-wrap.up{
+  animation:rise 1s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+@keyframes rise{to{transform:translateY(0);opacity:1;}}
+
+.paper{
+  max-width:940px;margin:0 auto;
+  background:var(--paper);
+  background-image:
+    repeating-linear-gradient(0deg,
+      transparent,transparent 27px,
+      rgba(180,150,90,0.08) 27px,rgba(180,150,90,0.08) 28px
+    ),
+    radial-gradient(ellipse at center,transparent 55%,rgba(150,120,60,0.12) 100%);
+  box-shadow:
+    0 4px 8px rgba(0,0,0,0.1),
+    0 16px 32px rgba(0,0,0,0.18),
+    0 48px 96px rgba(0,0,0,0.32),
+    inset 0 0 0 1px rgba(180,150,80,0.18);
+  position:relative;
+}
+.paper::before{
+  content:'';position:absolute;
+  top:33%;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,
+    transparent,rgba(160,130,80,0.45) 10%,
+    rgba(160,130,80,0.6) 50%,
+    rgba(160,130,80,0.45) 90%,transparent
+  );
+  pointer-events:none;
+}
+.paper::after{
+  content:'';position:absolute;
+  top:66%;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,
+    transparent,rgba(160,130,80,0.3) 10%,
+    rgba(160,130,80,0.4) 50%,
+    rgba(160,130,80,0.3) 90%,transparent
+  );
+  pointer-events:none;
+}
+
+.curl{
+  position:absolute;bottom:0;right:0;
+  width:32px;height:32px;
+  background:linear-gradient(225deg,var(--paper-edge) 45%,transparent 65%);
+  box-shadow:-4px -4px 8px rgba(0,0,0,0.1);
+}
+
+.pg-hdr{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0.55rem 2rem 0.55rem 3.5rem;
+  border-top:1px solid var(--gold);
+  border-bottom:1px solid var(--gold);
+  background:rgba(200,185,140,0.2);
+}
+.pg-hdr span{
+  font-size:8.5px;color:var(--ink-faded);
+  letter-spacing:0.12em;text-transform:uppercase;
+}
+
+.doc{display:flex;}
+
+.mg{
+  width:44px;flex-shrink:0;
+  background:var(--paper-edge);
+  border-right:1px dashed rgba(180,150,80,0.45);
+  display:flex;flex-direction:column;
+  align-items:center;padding-top:1.5rem;gap:0.6rem;
+}
+.mg-txt{
+  font-size:7.5px;color:var(--ink-faded);
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  letter-spacing:0.1em;text-transform:uppercase;
+}
+
+.col{
+  flex:1;padding:2.5rem 3rem 2.5rem 1.75rem;
+  position:relative;overflow:hidden;
+}
+.col::before{
+  content:'INTERNAL';
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%) rotate(-20deg);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:80px;letter-spacing:0.1em;
+  color:rgba(158,31,26,0.035);
+  pointer-events:none;white-space:nowrap;z-index:0;
+}
+
+.anon-stamp{
+  position:absolute;top:2rem;right:2.5rem;
+  transform:rotate(-7deg);
+  border:2px solid rgba(42,123,123,0.55);
+  padding:4px 10px;opacity:0.8;
+}
+.anon-stamp .sw{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:13px;letter-spacing:0.1em;
+  color:var(--teal);display:block;line-height:1.1;
+}
+.anon-stamp .ss{
+  font-size:7px;color:var(--teal);
+  display:block;text-align:center;
+  margin-top:2px;letter-spacing:0.1em;
+}
+
+h2{
+  font-family:'Special Elite',serif;
+  font-size:1.75rem;letter-spacing:0.05em;text-transform:uppercase;
+  color:var(--ink);margin-bottom:1.75rem;
+  position:relative;z-index:1;
+}
+
+.big-stmt{
+  font-family:'Special Elite',serif;
+  font-size:clamp(1.4rem,3vw,2rem);
+  line-height:1.45;
+  color:var(--ink);
+  margin-bottom:2rem;
+  position:relative;z-index:1;
+  max-width:560px;
+}
+
+.dp{
+  font-size:0.95rem;line-height:1.85;
+  color:var(--ink-mid);
+  margin-bottom:1.5rem;
+  position:relative;z-index:1;
+  max-width:600px;
+}
+
+.insight{
+  border-left:3px solid var(--teal);
+  padding:0.9rem 1.25rem;
+  margin:1.75rem 0;
+  position:relative;z-index:1;
+  background:rgba(42,123,123,0.05);
+}
+.insight-label{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:10px;letter-spacing:0.2em;
+  color:var(--teal);margin-bottom:0.4rem;
+}
+.insight p{
+  font-size:0.9rem;line-height:1.7;
+  color:var(--ink-mid);
+}
+
+.fact-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1rem;margin:1.75rem 0;
+  position:relative;z-index:1;
+}
+.fact-card{
+  background:var(--paper-aged);
+  border:1px solid var(--paper-edge);
+  padding:1.1rem 1rem;
+  position:relative;overflow:hidden;
+}
+.fact-card::before{
+  content:attr(data-n);
+  position:absolute;top:-0.5rem;right:0.5rem;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:3.5rem;color:rgba(184,146,42,0.12);
+  line-height:1;pointer-events:none;
+}
+.fact-card .fc-label{
+  font-size:7.5px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:0.5rem;display:block;
+}
+.fact-card p{
+  font-size:0.82rem;line-height:1.6;
+  color:var(--ink-mid);
+}
+
+.rx{
+  display:inline-block;
+  background:var(--redact);
+  height:1.05em;vertical-align:middle;
+  border-radius:1px;
+  position:relative;z-index:1;
+}
+.rx-full{width:100%;display:block;margin:0.35rem 0;}
+.rx-60{width:60%;}
+.rx-80{width:80%;}
+
+.sep{
+  height:2px;
+  background:linear-gradient(90deg,
+    var(--paper-edge),var(--gold) 25%,
+    var(--gold) 50%,var(--gold) 75%,var(--paper-edge)
+  );
+  position:relative;
+}
+.sep::after{
+  content:'PAGE TURN';
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  background:var(--paper);
+  font-size:7.5px;color:var(--ink-faded);
+  letter-spacing:0.2em;text-transform:uppercase;
+  padding:0 10px;
+}
+
+.mnote{
+  font-family:'Caveat',cursive;
+  font-size:1rem;line-height:1.5;
+  color:var(--ink-mid);
+  margin:1.5rem 0 1.5rem -1.75rem;
+  padding-left:1.75rem;
+  border-left:2px solid var(--gold-dim);
+  transform:rotate(-1.2deg);
+  position:relative;z-index:1;
+  max-width:80%;
+}
+
+.hf-frame{
+  border:3px double var(--gold);
+  margin:2rem 0;
+  position:relative;z-index:1;
+  background:var(--bureau);
+  overflow:hidden;
+}
+.hf-bar{
+  background:#050302;
+  padding:0.55rem 1rem;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid rgba(184,146,42,0.2);
+}
+.hf-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--stamp-red);
+  display:inline-block;margin-right:0.6rem;
+  box-shadow:0 0 8px rgba(158,31,26,0.7);
+  animation:dpulse 2s ease-in-out infinite;
+}
+@keyframes dpulse{0%,100%{box-shadow:0 0 6px rgba(158,31,26,0.5);}50%{box-shadow:0 0 16px rgba(220,40,40,0.9);}}
+.hf-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:12px;letter-spacing:0.18em;color:var(--white-warm);
+  display:flex;align-items:center;
+}
+.hf-note{
+  font-size:8px;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(184,146,42,0.5);
+}
+
+.hf-cinema{
+  aspect-ratio:16/9;
+  position:relative;
+  overflow:hidden;
+  background:#040201;
+}
+.hf-cinema-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 20% 30%,rgba(158,31,26,0.14) 0%,transparent 55%),
+    radial-gradient(ellipse at 80% 70%,rgba(42,123,123,0.10) 0%,transparent 50%),
+    radial-gradient(ellipse at 50% 50%,rgba(184,146,42,0.06) 0%,transparent 60%);
+  animation:atm 8s ease-in-out infinite alternate;
+}
+@keyframes atm{
+  0%{opacity:0.7;}
+  50%{opacity:1;}
+  100%{opacity:0.75;}
+}
+.hf-lines{
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent 0px,transparent 39px,
+    rgba(184,146,42,0.04) 39px,rgba(184,146,42,0.04) 40px
+  );
+}
+.hf-scan{
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    0deg,rgba(0,0,0,0.15) 0px,rgba(0,0,0,0.15) 1px,
+    transparent 1px,transparent 2px
+  );
+  z-index:3;pointer-events:none;
+}
+.hf-grain{
+  position:absolute;inset:0;
+  opacity:0.045;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px;
+  z-index:2;pointer-events:none;
+}
+.hf-vig{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,0.75) 100%);
+  z-index:4;pointer-events:none;
+}
+.hf-overlay{
+  position:absolute;inset:0;z-index:5;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:1.5rem;
+}
+.hf-ref{
+  font-family:'Courier Prime',monospace;
+  font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(184,146,42,0.4);
+  position:absolute;top:1rem;left:1.5rem;
+}
+.hf-ref-r{
+  font-family:'Courier Prime',monospace;
+  font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(184,146,42,0.4);
+  position:absolute;top:1rem;right:1.5rem;
+}
+.hf-classified-stamp{
+  border:2px solid rgba(158,31,26,0.6);
+  padding:6px 20px;
+  transform:rotate(-8deg);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:20px;letter-spacing:0.22em;
+  color:rgba(158,31,26,0.7);
+  text-shadow:0 0 20px rgba(158,31,26,0.3);
+  animation:stmpulse 3s ease-in-out infinite;
+}
+@keyframes stmpulse{
+  0%,100%{opacity:0.65;border-color:rgba(158,31,26,0.5);}
+  50%{opacity:0.9;border-color:rgba(158,31,26,0.85);}
+}
+.hf-center-text{
+  text-align:center;
+}
+.hf-main-label{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(1.4rem,3.5vw,2.4rem);
+  letter-spacing:0.14em;
+  color:rgba(234,230,220,0.85);
+  line-height:1.1;
+  text-shadow:0 0 40px rgba(184,146,42,0.2);
+}
+.hf-sub-label{
+  font-size:9px;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(122,106,74,0.7);margin-top:0.5rem;
+}
+.hf-corner{
+  position:absolute;width:24px;height:24px;
+  border-color:rgba(184,146,42,0.35);border-style:solid;
+}
+.hf-corner.tl{top:1.2rem;left:1.2rem;border-width:1px 0 0 1px;}
+.hf-corner.tr{top:1.2rem;right:1.2rem;border-width:1px 1px 0 0;}
+.hf-corner.bl{bottom:1.2rem;left:1.2rem;border-width:0 0 1px 1px;}
+.hf-corner.br{bottom:1.2rem;right:1.2rem;border-width:0 1px 1px 0;}
+.hf-databar{
+  position:absolute;bottom:2.5rem;left:50%;
+  transform:translateX(-50%);
+  display:flex;gap:3px;
+  z-index:6;
+}
+.hf-databar span{
+  display:block;width:3px;
+  background:rgba(184,146,42,0.35);
+  border-radius:1px;
+  animation:bar 1.4s ease-in-out infinite;
+}
+.hf-databar span:nth-child(1){height:8px;animation-delay:0s;}
+.hf-databar span:nth-child(2){height:16px;animation-delay:0.1s;}
+.hf-databar span:nth-child(3){height:24px;animation-delay:0.2s;}
+.hf-databar span:nth-child(4){height:12px;animation-delay:0.3s;}
+.hf-databar span:nth-child(5){height:20px;animation-delay:0.15s;}
+.hf-databar span:nth-child(6){height:8px;animation-delay:0.25s;}
+.hf-databar span:nth-child(7){height:18px;animation-delay:0.05s;}
+@keyframes bar{0%,100%{opacity:0.3;}50%{opacity:0.8;}}
+
+.hf-cap{
+  padding:0.5rem 1rem;
+  font-size:8px;color:rgba(122,106,74,0.6);
+  letter-spacing:0.1em;text-transform:uppercase;
+  border-top:1px solid rgba(184,146,42,0.1);
+  background:#050302;
+}
+
+.trigger-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:0.75rem;margin:1.75rem 0;
+  position:relative;z-index:1;
+}
+.trigger-card{
+  border:1px solid var(--paper-edge);
+  background:var(--paper-aged);
+  padding:1rem;
+  position:relative;
+}
+.trigger-card::before{
+  content:'';position:absolute;top:0;left:0;
+  width:3px;height:100%;
+  background:var(--stamp-red);
+}
+.trigger-card .tc-label{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:14px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--stamp-red);margin-bottom:0.5rem;display:block;
+  padding-left:0.5rem;
+}
+.trigger-card p{
+  font-size:0.82rem;line-height:1.55;
+  color:var(--ink);padding-left:0.5rem;
+}
+
+.outcomes{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;margin:1.75rem 0;
+  border:1px solid var(--paper-edge);
+  position:relative;z-index:1;
+}
+.outcome{
+  padding:1.5rem 1.25rem;
+  border-right:1px solid var(--paper-edge);
+}
+.outcome:last-child{border-right:none;}
+.outcome-n{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2.5rem;color:rgba(184,146,42,0.35);
+  line-height:1;margin-bottom:0.5rem;
+}
+.outcome-head{
+  font-family:'Special Elite',serif;
+  font-size:0.95rem;color:var(--ink);
+  margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.04em;
+}
+.outcome-body{
+  font-size:0.8rem;line-height:1.6;color:var(--ink-mid);
+}
+
+.transcript{position:relative;z-index:1;}
+.qa{padding:1rem 0;border-bottom:1px dashed rgba(180,150,80,0.3);}
+.qa-q{
+  font-size:0.8rem;font-weight:700;
+  color:var(--ink-faded);letter-spacing:0.08em;text-transform:uppercase;
+  margin-bottom:0.35rem;
+}
+.qa-q span{display:inline-block;min-width:110px;}
+.qa-a{font-size:0.9rem;color:var(--ink);line-height:1.7;}
+.qa-a span{display:inline-block;min-width:110px;color:var(--ink-faded);font-weight:700;}
+
+.cta-area{position:relative;z-index:1;padding:0.5rem 0;}
+.cta-intro{
+  font-family:'Special Elite',serif;
+  font-size:1.3rem;line-height:1.5;
+  color:var(--ink);margin-bottom:1.75rem;
+  max-width:500px;
+}
+.form-row{
+  font-size:0.82rem;color:var(--ink-mid);
+  letter-spacing:0.06em;text-transform:uppercase;
+  margin-bottom:0.9rem;
+  display:flex;align-items:baseline;gap:0.5rem;
+}
+.form-line{
+  flex:1;border:none;border-bottom:1px solid var(--gold-dim);
+  background:transparent;font-family:'Courier Prime',monospace;
+  font-size:0.85rem;color:var(--ink);padding:2px 0;
+  outline:none;
+}
+.form-line:focus{border-bottom-color:var(--teal);}
+.chk-group{margin:0.5rem 0 1.5rem 0;}
+.chk-section-label{
+  font-size:7.5px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--ink-faded);margin-bottom:0.5rem;display:block;
+}
+.chk{
+  font-size:0.82rem;color:var(--ink-mid);
+  letter-spacing:0.03em;margin-bottom:0.5rem;
+  display:flex;align-items:center;gap:0.55rem;cursor:pointer;
+}
+.chk-box{color:var(--ink-faded);}
+.fee-line{
+  font-size:0.8rem;color:var(--ink-faded);
+  letter-spacing:0.1em;text-transform:uppercase;
+  margin-bottom:1rem;
+  display:flex;align-items:center;gap:1rem;
+}
+.fee-line strong{color:var(--ink);font-size:1rem;}
+.cta-btn{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:16px;letter-spacing:0.14em;
+  background:var(--stamp-red);color:#fff;
+  border:2px solid var(--stamp-red);
+  padding:13px 32px;
+  cursor:pointer;
+  transition:background 0.18s,color 0.18s;
+  display:inline-block;text-decoration:none;
+}
+.cta-btn:hover{background:transparent;color:var(--stamp-red);}
+.privacy-note{
+  font-size:8.5px;color:var(--ink-faded);
+  letter-spacing:0.06em;line-height:1.6;
+  margin-top:1rem;max-width:420px;
+}
+.avail-note{
+  font-family:'Caveat',cursive;
+  font-size:1rem;color:rgba(158,31,26,0.7);
+  transform:rotate(-2.5deg);display:inline-block;
+  border:1px solid rgba(158,31,26,0.4);
+  padding:2px 10px;border-radius:50%;margin-top:0.75rem;
+}
+
+.ftr{background:var(--bureau-mid);padding:2.5rem 2.5rem 0;border-top:1px solid var(--gold);}
+.ftr-grid{
+  max-width:940px;margin:0 auto;
+  display:grid;grid-template-columns:1fr auto 1fr;
+  gap:2rem;padding-bottom:2rem;align-items:center;
+}
+.ftr-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:20px;letter-spacing:0.1em;color:var(--stamp-red);
+}
+.ftr-url{font-size:10px;color:var(--ink-faded);margin-top:0.2rem;}
+.ftr-tagline{font-size:9px;color:var(--ink-faded);letter-spacing:0.06em;margin-top:0.5rem;}
+.eof{
+  border:1.5px solid var(--gold);
+  padding:8px 20px;text-align:center;
+}
+.eof span{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:13px;letter-spacing:0.2em;color:var(--gold);
+}
+.ftr-copy{text-align:right;font-size:9px;color:var(--ink-faded);}
+.ftr-fine{
+  max-width:940px;margin:0 auto;
+  padding:1rem 0;border-top:1px solid #1a1a1a;
+  font-size:8.5px;color:var(--ink-faded);letter-spacing:0.04em;
+}
+.ftr-bar{
+  background:rgba(158,31,26,0.88);
+  padding:9px;text-align:center;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:11px;letter-spacing:0.24em;color:#fff;
+}
+
+.rv{opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease;}
+.rv.on{opacity:1;transform:translateY(0);}
+.rv-l{opacity:0;transform:translateX(-24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.rv-l.on{opacity:1;transform:translateX(0);}
+.rv-r{opacity:0;transform:translateX(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.rv-r.on{opacity:1;transform:translateX(0);}
+.d1{transition-delay:0.05s;} .d2{transition-delay:0.12s;}
+.d3{transition-delay:0.19s;} .d4{transition-delay:0.26s;}
+
+@media(max-width:700px){
+  .tabs{display:none;}
+  .mg{display:none;}
+  .col{padding:1.5rem;}
+  h2{font-size:1.4rem;}
+  .tw{font-size:1.2rem;}
+  .fact-grid,.trigger-grid,.outcomes{grid-template-columns:1fr;}
+  .outcome{border-right:none;border-bottom:1px solid var(--paper-edge);}
+  .ftr-grid{grid-template-columns:1fr;}
+  .ftr-copy{text-align:left;}
+  .mnote{margin-left:0;}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .paper-wrap{transform:none;opacity:1;}
+  .paper-wrap.up{animation:none;}
+  .rv,.rv-l,.rv-r{opacity:1;transform:none;transition:none;}
+  .tw-c{animation:none;}
+  .scroll-cue{animation:none;opacity:0.5;}
+  .access-dot{animation:none;}
+  .hf-cinema-bg{animation:none;}
+  .hf-classified-stamp{animation:none;}
+  .hf-databar span{animation:none;opacity:0.5;}
+}
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header role="banner">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="assets/hrExposed-logo.png" alt="HR Exposed Logo">
-                    HR Exposed
-                </div>
-                <div class="header-right">
-                    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark/light mode">🌙</button>
-                    <a href="<REPLACE_WITH_BOOKING_URL>" class="header-cta" aria-label="Book a 30-minute HR prep call">Book a Call</a>
-                </div>
+
+<div class="cursor-dot" id="cd"></div>
+<div class="cursor-ring" id="cr"></div>
+
+<header class="hdr">
+  <div class="hdr-brand">
+    <div class="hdr-stamp">HR EXPOSED</div>
+    <span class="hdr-url">hrexposed.net</span>
+  </div>
+  <nav class="tabs" aria-label="Site sections">
+    <a href="#the-file" class="tab on">THE FILE</a>
+    <a href="#the-system" class="tab off">THE SYSTEM</a>
+    <a href="#playbook" class="tab off">PLAYBOOK</a>
+    <a href="#faq" class="tab off">FAQ</a>
+    <a href="#book" class="tab go">GET BRIEFED</a>
+  </nav>
+</header>
+
+<section class="hero" id="the-file" aria-label="Hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="access-label" aria-label="Inside access">
+      <span class="access-dot" aria-hidden="true"></span>
+      INSIDE ACCESS
+    </div>
+    <div class="tw" id="tw" aria-label="HR is not the enemy. Most people just never got the real handbook."></div>
+    <p class="hero-sub" id="hs">
+      <span class="hero-sub-divider" aria-hidden="true"></span>
+      60 minutes with a former HR leader
+      <span class="hero-sub-divider" aria-hidden="true"></span>
+    </p>
+    <div class="hero-stats" id="hstats">
+      <div class="stat-item">
+        <div class="stat-num">60</div>
+        <div class="stat-label">Minutes</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">$149</div>
+        <div class="stat-label">One session</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Confidential</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">OPEN THE FILES &darr;</div>
+</section>
+
+<div class="paper-wrap" id="pw">
+<article class="paper">
+  <div class="curl" aria-hidden="true"></div>
+
+  <div class="pg-hdr" id="the-file-pg">
+    <span>REF: HRX 001</span>
+    <span>THE INSIDER FILE</span>
+    <span>PAGE 01 OF 05</span>
+  </div>
+  <div class="doc">
+    <div class="mg" aria-hidden="true"><div class="mg-txt">Page 01 The File</div></div>
+    <div class="col">
+      <div class="anon-stamp" aria-hidden="true">
+        <span class="sw">ANONYMOUS</span>
+        <span class="ss">SOURCE VERIFIED</span>
+      </div>
+      <div class="big-stmt rv">
+        The files are open.<br>
+        What HR knows about your career<br>
+        that nobody told you.
+      </div>
+      <p class="dp rv d1">
+        A former HR leader with more than 20 years of experience across multinational companies is opening the files.
+        Not to expose wrongdoing. To close the gap between what employees assume and what HR actually does.
+      </p>
+      <div class="fact-grid rv d2">
+        <div class="fact-card" data-n="01">
+          <span class="fc-label">What most miss</span>
+          <p>HR tracks context, not just performance. Knowing how decisions form changes how you show up.</p>
+        </div>
+        <div class="fact-card" data-n="02">
+          <span class="fc-label">The real dynamic</span>
+          <p>Employees who build genuine HR relationships advance faster. This is a learnable skill.</p>
+        </div>
+        <div class="fact-card" data-n="03">
+          <span class="fc-label">The language gap</span>
+          <p>HR and employees often talk past each other. Bridging that gap takes 60 minutes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sep" aria-hidden="true"></div>
+
+  <div class="pg-hdr" id="the-system">
+    <span>REF: HRX 002</span>
+    <span>HOW THE SYSTEM WORKS</span>
+    <span>PAGE 02 OF 05</span>
+  </div>
+  <div class="doc">
+    <div class="mg" aria-hidden="true"><div class="mg-txt">Page 02 The System</div></div>
+    <div class="col">
+      <h2 class="rv">What HR is actually doing</h2>
+      <div class="insight rv d1">
+        <div class="insight-label">CORE PRINCIPLE</div>
+        <p>Every HR decision runs through three filters: policy, precedent, and risk. Once you understand those lenses, every conversation becomes a collaboration instead of a negotiation you are losing.</p>
+      </div>
+      <p class="dp rv d2">
+        This is not about gaming anything.
+        It is about speaking the same language as the people making decisions about your career.
+      </p>
+      <div class="hf-frame rv d3" role="region" aria-label="Classified briefing visual">
+        <div class="hf-bar">
+          <div class="hf-title">
+            <span class="hf-dot" aria-hidden="true"></span>
+            CLASSIFIED BRIEFING
+          </div>
+          <span class="hf-note">VIDEO COMING SOON</span>
+        </div>
+        <div class="hf-cinema" aria-label="Cinematic classified exhibit">
+          <div class="hf-cinema-bg" aria-hidden="true"></div>
+          <div class="hf-lines" aria-hidden="true"></div>
+          <div class="hf-grain" aria-hidden="true"></div>
+          <div class="hf-scan" aria-hidden="true"></div>
+          <div class="hf-vig" aria-hidden="true"></div>
+          <div class="hf-corner tl" aria-hidden="true"></div>
+          <div class="hf-corner tr" aria-hidden="true"></div>
+          <div class="hf-corner bl" aria-hidden="true"></div>
+          <div class="hf-corner br" aria-hidden="true"></div>
+          <div class="hf-overlay">
+            <div class="hf-ref" aria-hidden="true">DOC REF: HRX-EVAL-00471</div>
+            <div class="hf-ref-r" aria-hidden="true">2026 // RESTRICTED</div>
+            <div class="hf-classified-stamp" aria-hidden="true">CLASSIFIED</div>
+            <div class="hf-center-text">
+              <div class="hf-main-label">How HR Evaluates You</div>
+              <div class="hf-sub-label">Full insider briefing releasing soon</div>
             </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" role="main">
-        <div class="container">
-            <h1>HR without the corporate spin</h1>
-            <p>Insider answers from someone who’s been in the room. Get clarity for reviews, interviews, and tough work situations.</p>
-            <div class="cta-buttons">
-                <a href="<REPLACE_WITH_WAITLIST_URL>" class="btn-primary" aria-label="Join the waitlist">Join the Waitlist</a>
-                <a href="<REPLACE_WITH_BOOKING_URL>" class="btn-secondary" aria-label="Book a 30-minute HR prep call for $149">Book a 30-Minute HR Prep Call ($149)</a>
+            <div class="hf-databar" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span>
             </div>
-            <p class="inline-form-intro">Join the list to get insider HR tips (and first dibs on call slots).</p>
-            <form class="email-form" action="<REPLACE_WITH_WAITLIST_URL>" method="post">
-                <label for="hero-email" class="visually-hidden">Email address</label>
-                <input type="email" id="hero-email" name="email" class="email-input" placeholder="you@example.com" required>
-                <button type="submit" class="email-submit">Get insider tips</button>
-            </form>
-            <p class="form-note">We never share your email. Unsubscribe anytime.</p>
-            <p class="micro-trust">Calls are limited so you get my full focus, not a rushed checklist. If there’s a booking issue or the session falls short, I’ll fix it. Simple as that.</p>
+          </div>
         </div>
-    </section>
+        <div class="hf-cap">Exhibit A: HR evaluation decoded &nbsp;|&nbsp; Full video in production</div>
+      </div>
+    </div>
+  </div>
 
-    <!-- Main Content -->
-    <main>
-        <div class="container">
-            <!-- Enemy Statement Section -->
-            <section class="section">
-                <h2>Forget the rumors. Here’s the real HR playbook.</h2>
-                <div class="enemy-statement">
-                    <p>Every decision runs through three filters: policy, precedent, and risk. Learn how to navigate each one, and protect yourself in the process.</p>
-                </div>
-            </section>
-            <!-- Value Bullets -->
-            <section class="section">
-                <div class="value-bullets">
-                    <div class="bullet">
-                        <h4>Interview and performance review prep with insider HR logic</h4>
-                        <p>Know exactly how HR scores your performance so you can show up prepared and confident.</p>
-                    </div>
-                    <div class="bullet">
-                        <h4>Scripts and exact phrases that actually work</h4>
-                        <p>Walk into every conversation with proven language for raises, negotiations, and tough feedback moments.</p>
-                    </div>
-                    <div class="bullet">
-                        <h4>Clear coaching, no corporate jargon</h4>
-                        <p>Get straight talk on what HR is thinking and what to do next,without the fluffy buzzwords.</p>
-                    </div>
-                </div>
-            </section>
+  <div class="sep" aria-hidden="true"></div>
 
-            <!-- Why HR Exposed Exists -->
-            <section class="section">
-                <div class="social-proof">
-                    <h3>Why HR Exposed Exists</h3>
-                    <p>After more than a decade leading HR across the U.S., Middle East, and Africa, I saw the same painful pattern everywhere: employees left in the dark, bad advice spreading, and careers stalled because of misinformation. HR Exposed was created to change that. No corporate spin. No jargon. Just the insider playbook that shows you how HR really works — and how to use that knowledge to your advantage.</p>
-
-                    <p>I've also worked with people across the world, in many languages. Don't worry if your English isn't perfect. This is a safe space to be clear and confident, not flawless.</p>
-
-                   
-                </div>
-            </section>
-
-            <!-- Secondary CTA -->
-            <section class="section">
-                <h2>Ready to get the real HR playbook</h2>
-                <div class="cta-buttons">
-                    <a href="<REPLACE_WITH_WAITLIST_URL>" class="btn-primary" aria-label="Join the waitlist">Join the Waitlist</a>
-                    <a href="<REPLACE_WITH_BOOKING_URL>" class="btn-secondary" aria-label="Book a 30-minute HR prep call for $149">Book a 30-Minute HR Prep Call ($149)</a>
-                </div>
-            </section>
-
-            <!-- FAQ Section -->
-            <section class="section">
-                <div class="faq">
-                    <h2>Frequently Asked Questions</h2>
-                    <div class="faq-item">
-                        <details>
-                            <summary>Is this legal advice</summary>
-                            <p>No. This is educational HR coaching. Laws vary by state and country. For legal advice, talk to a lawyer.</p>
-                        </details>
-                    </div>
-                    <div class="faq-item">
-                        <details>
-                            <summary>Who is this for</summary>
-                            <p>Employees and job seekers who want clear, practical HR guidance for reviews, interviews, and tricky situations.</p>
-                        </details>
-                    </div>
-                    <div class="faq-item">
-                        <details>
-                            <summary>What if my English isn't perfect?</summary>
-                            <p>You're in the right place. I've worked with people all over the world, and I speak multiple languages myself. I understand what it feels like to express yourself in a second language. This is a safe space — clarity and confidence matter more than flawless grammar.</p>
-                        </details>
-                    </div>
-                    <div class="faq-item">
-                        <details>
-                            <summary>What happens in a 30-minute call</summary>
-                            <p>We focus on your top three issues. You leave with a one-page plan and exact phrases to use.</p>
-                        </details>
-                    </div>
-                    <div class="faq-item">
-                        <details>
-                            <summary>Do you offer refunds</summary>
-                            <p>Calls are non-refundable once delivered. If there’s a booking issue or you’re not satisfied with the session quality, I’ll make it right.</p>
-                        </details>
-                    </div>
-                    <div class="faq-item">
-                        <details>
-                            <summary>What if I am not ready to book</summary>
-                            <p>Join the waitlist. You will get one practical tip and a reminder when new call slots open.</p>
-                        </details>
-                    </div>
-                    <div class="faq-item">
-                        <details>
-                            <summary>Can my employer find out I booked a call?</summary>
-                            <p>No. Calls are private and confidential. Nothing is shared.</p>
-                        </details>
-                    </div>
-                </div>
-            </section>
+  <div class="pg-hdr" id="playbook">
+    <span>REF: HRX 003</span>
+    <span>THE PLAYBOOK</span>
+    <span>PAGE 03 OF 05</span>
+  </div>
+  <div class="doc">
+    <div class="mg" aria-hidden="true"><div class="mg-txt">Page 03 Playbook</div></div>
+    <div class="col">
+      <h2 class="rv">60 minutes. 3 outcomes.</h2>
+      <div class="outcomes rv d1">
+        <div class="outcome">
+          <div class="outcome-n">01</div>
+          <div class="outcome-head">Your Standing</div>
+          <p class="outcome-body">Read the signals. Know where you actually are, not where you think you are.</p>
         </div>
-    </main>
-
-    <!-- Footer -->
-    <footer role="contentinfo">
-        <div class="container">
-            <nav class="footer-nav" role="navigation" aria-label="Footer navigation">
-                <a href="/">Home</a>
-                <a href="/privacy">Privacy Policy</a>
-            </nav>
-            <p class="disclaimer">Educational HR coaching. Not legal advice. Contexts vary by state and country; consult counsel for legal advice.</p>
+        <div class="outcome">
+          <div class="outcome-n">02</div>
+          <div class="outcome-head">Your Language</div>
+          <p class="outcome-body">Tested phrases from both sides of the table. For reviews, raises, and tough moments.</p>
         </div>
-    </footer>
-    
-    <script>
-        // Theme toggle functionality
-        function toggleTheme() {
-            const body = document.body;
-            const themeToggle = document.querySelector('.theme-toggle');
-            const currentTheme = body.getAttribute('data-theme');
-            
-            if (currentTheme === 'dark') {
-                body.removeAttribute('data-theme');
-                themeToggle.textContent = '🌙';
-                localStorage.setItem('theme', 'light');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                themeToggle.textContent = '☀️';
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-        
-        // Load saved theme on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedTheme = localStorage.getItem('theme');
-            const themeToggle = document.querySelector('.theme-toggle');
-            
-            if (savedTheme === 'dark') {
-                document.body.setAttribute('data-theme', 'dark');
-                themeToggle.textContent = '☀️';
-            } else {
-                themeToggle.textContent = '🌙';
-            }
-        });
-    </script>
+        <div class="outcome">
+          <div class="outcome-n">03</div>
+          <div class="outcome-head">Your Plan</div>
+          <p class="outcome-body">Concrete next steps built on your specific situation. Not generic advice.</p>
+        </div>
+      </div>
+      <div class="insight rv d2">
+        <div class="insight-label">WHEN TO BOOK A SESSION</div>
+        <p>There are specific moments in your career when having an HR insider in your corner makes a measurable difference. These are them.</p>
+      </div>
+      <div class="trigger-grid rv d3">
+        <div class="trigger-card">
+          <span class="tc-label">Performance Season</span>
+          <p>Before annual reviews or mid-year check-ins. Know how your manager's narrative gets shaped before you walk in.</p>
+        </div>
+        <div class="trigger-card">
+          <span class="tc-label">PIP Situations</span>
+          <p>If you are on a Performance Improvement Plan, or sense one is coming. Understand your real options and timeline.</p>
+        </div>
+        <div class="trigger-card">
+          <span class="tc-label">Salary Negotiations</span>
+          <p>Before asking for a raise or accepting a new offer. Know what HR is authorized to move and what levers actually work.</p>
+        </div>
+        <div class="trigger-card">
+          <span class="tc-label">Difficult HR Conversations</span>
+          <p>When you need to raise a concern but do not trust the process. Get the inside view before you speak.</p>
+        </div>
+        <div class="trigger-card">
+          <span class="tc-label">Promotion Readiness</span>
+          <p>Before lobbying for a title change. Learn how promotion decisions are actually made, not how they are presented.</p>
+        </div>
+        <div class="trigger-card">
+          <span class="tc-label">Exits and Transitions</span>
+          <p>Before a layoff, a resignation, or a negotiated departure. Know what you are entitled to and how to ask for it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sep" aria-hidden="true"></div>
+
+  <div class="pg-hdr" id="faq">
+    <span>REF: HRX 004</span>
+    <span>ON THE RECORD</span>
+    <span>PAGE 04 OF 05</span>
+  </div>
+  <div class="doc">
+    <div class="mg" aria-hidden="true"><div class="mg-txt">Page 04 FAQ</div></div>
+    <div class="col">
+      <h2 class="rv">On the record</h2>
+      <div class="transcript rv d1">
+        <div class="qa">
+          <div class="qa-q"><span>QUESTION:</span>Who is behind HR Exposed?</div>
+          <div class="qa-a"><span>ANSWER:</span>A former HR leader with more than 20 years of experience across multinational companies on multiple continents. Anonymous by design. The guidance stands on its own.</div>
+        </div>
+        <div class="qa">
+          <div class="qa-q"><span>QUESTION:</span>Is this anti HR?</div>
+          <div class="qa-a"><span>ANSWER:</span>The opposite. This exists because misunderstanding HR hurts both sides. Employees who understand how HR operates work better within it and get better outcomes.</div>
+        </div>
+        <div class="qa">
+          <div class="qa-q"><span>QUESTION:</span>Will my employer find out?</div>
+          <div class="qa-a"><span>ANSWER:</span>No. Sessions are entirely private. Nothing is shared with any employer or third party. Contact is anonymous by default.</div>
+        </div>
+        <div class="qa">
+          <div class="qa-q"><span>QUESTION:</span>How is this different from career coaching?</div>
+          <div class="qa-a"><span>ANSWER:</span>Career coaching advises on your strategy. This briefing gives you the internal HR perspective on how decisions are actually made. Those are different things.</div>
+        </div>
+        <div class="qa">
+          <div class="qa-q"><span>QUESTION:</span>What if my most pressing question is <span class="rx rx-60" aria-label="redacted"></span>?</div>
+          <div class="qa-a"><span>ANSWER:</span><span class="rx rx-full" aria-label="redacted"></span><small style="font-size:8px;color:var(--stamp-red);letter-spacing:0.1em;">[AVAILABLE IN SESSION]</small></div>
+        </div>
+        <div class="qa">
+          <div class="qa-q"><span>QUESTION:</span>Is this legal advice?</div>
+          <div class="qa-a"><span>ANSWER:</span>No. Educational coaching only. Consult a qualified attorney for legal matters specific to your situation and jurisdiction.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sep" aria-hidden="true"></div>
+
+  <div class="pg-hdr" id="book">
+    <span>REF: HRX 005</span>
+    <span>REQUEST A BRIEFING</span>
+    <span>PAGE 05 OF 05</span>
+  </div>
+  <div class="doc">
+    <div class="mg" aria-hidden="true"><div class="mg-txt">Page 05 Briefing</div></div>
+    <div class="col">
+      <div class="cta-area rv">
+        <div class="cta-intro">
+          Understanding how HR works is not reserved for executives.<br>
+          60 minutes is all it takes.
+        </div>
+        <form id="contact-form" action="https://formspree.io/f/REPLACE_WITH_ENDPOINT" method="POST" aria-label="Request a briefing">
+          <input type="hidden" name="_subject" value="HR Exposed Session Request">
+          <input type="hidden" name="_next" value="https://hrexposed.net/#book">
+          <div class="form-row">
+            SITUATION:
+            <input class="form-line" type="text" name="situation" placeholder="brief description (optional)" aria-label="Your situation">
+          </div>
+          <div class="form-row" style="flex-direction:column;align-items:flex-start;">
+            WHAT BRINGS YOU HERE:
+            <div class="chk-group" role="group" aria-label="Reason for contact">
+              <span class="chk-section-label">Select all that apply</span>
+              <label class="chk"><span class="chk-box" aria-hidden="true">[ ]</span><input type="checkbox" name="reason" value="performance_review"> Before my annual review or mid-year check-in</label>
+              <label class="chk"><span class="chk-box" aria-hidden="true">[ ]</span><input type="checkbox" name="reason" value="pip"> I am on a PIP, or think one may be coming</label>
+              <label class="chk"><span class="chk-box" aria-hidden="true">[ ]</span><input type="checkbox" name="reason" value="salary"> Salary negotiation or raise conversation</label>
+              <label class="chk"><span class="chk-box" aria-hidden="true">[ ]</span><input type="checkbox" name="reason" value="promotion"> Preparing for a promotion discussion</label>
+              <label class="chk"><span class="chk-box" aria-hidden="true">[ ]</span><input type="checkbox" name="reason" value="difficult_hr"> I need to raise something with HR but feel uncomfortable doing it alone</label>
+              <label class="chk"><span class="chk-box" aria-hidden="true">[ ]</span><input type="checkbox" name="reason" value="exit"> Navigating a layoff, resignation, or departure</label>
+              <label class="chk"><span class="chk-box" aria-hidden="true">[ ]</span><input type="checkbox" name="reason" value="other"> Something else</label>
+            </div>
+          </div>
+          <div class="fee-line">
+            <strong>$149</strong> &nbsp;|&nbsp; 60 minutes &nbsp;|&nbsp; 100% confidential
+          </div>
+          <button type="submit" class="cta-btn" aria-label="Submit your briefing request">REQUEST YOUR BRIEFING</button>
+        </form>
+        <p class="privacy-note">All sessions are strictly confidential. Your contact reaches an anonymous inbox. No records are shared with any employer or third party. Sessions are not recorded without explicit consent. You do not need to use your real name.</p>
+        <div class="avail-note" aria-label="Limited slots available">LIMITED SLOTS</div>
+      </div>
+    </div>
+  </div>
+
+</article>
+</div>
+
+<footer class="ftr" role="contentinfo">
+  <div class="ftr-grid">
+    <div>
+      <div class="ftr-name">HR EXPOSED</div>
+      <div class="ftr-url">hrexposed.net</div>
+      <div class="ftr-tagline">The insider view on how HR actually works</div>
+    </div>
+    <div class="eof"><span>END OF FILE</span></div>
+    <div class="ftr-copy">
+      <div>&copy; 2026 HR Exposed</div>
+      <div style="margin-top:0.4rem;"><a href="/privacy" style="color:var(--ink-faded);">Privacy Policy</a></div>
+    </div>
+  </div>
+  <div class="ftr-fine">
+    Educational HR coaching only. Not legal advice. Laws and contexts vary by jurisdiction; consult qualified counsel for legal matters specific to your situation.
+  </div>
+  <div class="ftr-bar">FOR EMPLOYEES WHO WANT THE REAL PICTURE</div>
+</footer>
+
+<script>
+var cd=document.getElementById('cd'),cr=document.getElementById('cr');
+var mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',function(e){
+  mx=e.clientX;my=e.clientY;
+  cd.style.left=mx+'px';cd.style.top=my+'px';
+});
+function lerpCursor(){
+  rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
+  cr.style.left=rx+'px';cr.style.top=ry+'px';
+  requestAnimationFrame(lerpCursor);
+}
+lerpCursor();
+
+var hdr=document.querySelector('.hdr');
+window.addEventListener('scroll',function(){
+  hdr.style.boxShadow=window.scrollY>40?'0 2px 16px rgba(0,0,0,0.25)':'none';
+},{passive:true});
+
+var LINES=["HR is not the enemy.","","Most people just never got","the real handbook."];
+var twEl=document.getElementById('tw');
+var hsSub=document.getElementById('hs');
+var hsStats=document.getElementById('hstats');
+var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if(reduced){
+  LINES.forEach(function(l){
+    if(l===''){twEl.appendChild(document.createElement('br'));return;}
+    twEl.appendChild(document.createTextNode(l));
+    twEl.appendChild(document.createElement('br'));
+  });
+  hsSub.classList.add('show');
+  hsStats.classList.add('show');
+}else{
+  var cur=document.createElement('span');
+  cur.className='tw-c';cur.textContent='\u2588';
+  function sleep(ms){return new Promise(function(r){setTimeout(r,ms);}); }
+  async function typeL(t,spd){
+    for(var i=0;i<t.length;i++){
+      if(cur.parentNode)cur.parentNode.removeChild(cur);
+      twEl.appendChild(document.createTextNode(t[i]));
+      twEl.appendChild(cur);
+      await sleep(spd);
+    }
+  }
+  async function run(){
+    await sleep(400);
+    twEl.appendChild(cur);
+    for(var i=0;i<LINES.length;i++){
+      if(LINES[i]===''){
+        if(cur.parentNode)cur.parentNode.removeChild(cur);
+        twEl.appendChild(document.createElement('br'));
+        twEl.appendChild(cur);
+        await sleep(420);continue;
+      }
+      await typeL(LINES[i],i===0?38:28);
+      if(i<LINES.length-1){
+        await sleep(550);
+        if(cur.parentNode)cur.parentNode.removeChild(cur);
+        twEl.appendChild(document.createElement('br'));
+        twEl.appendChild(cur);
+      }
+    }
+    await sleep(1200);
+    if(cur.parentNode)cur.parentNode.removeChild(cur);
+    await sleep(300);
+    hsSub.classList.add('show');
+    await sleep(500);
+    hsStats.classList.add('show');
+  }
+  run();
+}
+
+var pw=document.getElementById('pw');
+var risen=false;
+window.addEventListener('scroll',function(){
+  if(!risen&&window.scrollY>window.innerHeight*0.32){risen=true;pw.classList.add('up');}
+},{passive:true});
+
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+  });
+},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(function(el){io.observe(el);});
+
+document.querySelectorAll('.tab[href^="#"]').forEach(function(tab){
+  tab.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=document.querySelector(this.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+    document.querySelectorAll('.tab:not(.go)').forEach(function(x){
+      x.classList.remove('on');x.classList.add('off');
+    });
+    if(!this.classList.contains('go')){
+      this.classList.remove('off');this.classList.add('on');
+    }
+  });
+});
+
+document.querySelectorAll('.chk').forEach(function(lbl){
+  lbl.addEventListener('click',function(){
+    var box=this.querySelector('.chk-box');
+    var inp=this.querySelector('input[type=checkbox]');
+    if(inp){
+      inp.checked=!inp.checked;
+      box.textContent=inp.checked?'[X]':'[ ]';
+    }
+  });
+});
+
+var form=document.getElementById('contact-form');
+if(form){
+  form.addEventListener('submit',function(e){
+    var btn=form.querySelector('.cta-btn');
+    if(btn){
+      btn.textContent='TRANSMITTING...';
+      btn.style.opacity='0.6';
+      btn.style.pointerEvents='none';
+    }
+  });
+}
+</script>
 </body>
 </html>
-
-
