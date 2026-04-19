@@ -354,8 +354,8 @@ h2{
 }
 .insight-label{
   font-family:'Bebas Neue',sans-serif;
-  font-size:15px;letter-spacing:0.2em;font-weight:700;
-  color:var(--teal);margin-bottom:0.4rem;
+  font-size:17px;letter-spacing:0.14em;font-weight:700;
+  color:var(--stamp-red);margin-bottom:0.4rem;
 }
 .insight p{
   font-size:0.9rem;line-height:1.7;
@@ -381,7 +381,8 @@ h2{
   line-height:1;pointer-events:none;
 }
 .fact-card .fc-label{
-  font-size:15px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:17px;letter-spacing:0.12em;text-transform:uppercase;font-weight:700;
   color:var(--stamp-red);margin-bottom:0.5rem;display:block;
 }
 .fact-card p{
@@ -413,8 +414,8 @@ h2{
   position:absolute;top:50%;left:50%;
   transform:translate(-50%,-50%);
   background:var(--paper);
-  font-size:7.5px;color:var(--ink-faded);
-  letter-spacing:0.2em;text-transform:uppercase;
+  font-size:13px;color:var(--ink-mid);font-weight:700;
+  letter-spacing:0.18em;text-transform:uppercase;
   padding:0 10px;
 }
 
@@ -692,9 +693,10 @@ h2{
   font-size:0.95rem;color:var(--ink);
   letter-spacing:0.03em;margin-bottom:0.6rem;
   display:flex;align-items:center;gap:0.55rem;cursor:pointer;
+  position:relative;
 }
-.chk-box{color:var(--ink-mid);font-family:'Courier Prime',monospace;min-width:2ch;font-weight:700;}
-.chk input[type=checkbox]{position:absolute;opacity:0;width:0;height:0;pointer-events:none;}
+.chk-box{color:var(--ink-mid);font-family:'Courier Prime',monospace;min-width:2ch;font-weight:700;flex-shrink:0;}
+.chk input[type=checkbox]{position:absolute;opacity:0;width:0;height:0;pointer-events:none;left:0;top:0;}
 .fee-line{
   font-size:0.9rem;color:var(--ink-mid);font-weight:700;
   letter-spacing:0.1em;text-transform:uppercase;
@@ -779,10 +781,10 @@ h2{
   .stat-label{font-size:13px;}
   .big-stmt{font-size:1.3rem;}
   .dp{font-size:1rem;}
-  .insight-label{font-size:16px;}
+  .insight-label{font-size:18px;}
   .insight p{font-size:1rem;}
   .fact-grid,.trigger-grid,.outcomes{grid-template-columns:1fr;}
-  .fact-card .fc-label{font-size:16px;}
+  .fact-card .fc-label{font-size:18px;}
   .fact-card p{font-size:0.95rem;}
   .trigger-card .tc-label{font-size:18px;}
   .trigger-card p{font-size:1rem;}
