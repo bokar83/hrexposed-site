@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Scroll-reveal safety gate: the pre-reveal hidden state is applied ONLY when
+       this script runs. No JS, a script error, or a blocked bundle all leave the
+       page fully visible instead of blank. Must stay first in <head>. -->
+  <script>document.documentElement.className+=(document.documentElement.className?' ':'')+'js-reveal';</script>
+  <noscript><style>
+    .paper-wrap,.rv,.rv-l,.rv-r{opacity:1 !important;transform:none !important;}
+  </style></noscript>
   <!-- Privacy-friendly analytics by Plausible -->
   <script async src="https://plausible.io/js/pa-BHwdW7wsW9Y89hYBjv1Wn.js"></script>
   <script>
@@ -216,9 +223,11 @@ body{
 
 .paper-wrap{
   position:relative;z-index:20;
+}
+html.js-reveal .paper-wrap{
   transform:translateY(110px);opacity:0;
 }
-.paper-wrap.up{
+html.js-reveal .paper-wrap.up{
   animation:rise 1s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 @keyframes rise{to{transform:translateY(0);opacity:1;}}
@@ -768,12 +777,12 @@ h2{
   font-size:14px;letter-spacing:0.24em;color:#fff;font-weight:700;
 }
 
-.rv{opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease;}
-.rv.on{opacity:1;transform:translateY(0);}
-.rv-l{opacity:0;transform:translateX(-24px);transition:opacity 0.6s ease,transform 0.6s ease;}
-.rv-l.on{opacity:1;transform:translateX(0);}
-.rv-r{opacity:0;transform:translateX(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
-.rv-r.on{opacity:1;transform:translateX(0);}
+html.js-reveal .rv{opacity:0;transform:translateY(20px);transition:opacity 0.55s ease,transform 0.55s ease;}
+html.js-reveal .rv.on{opacity:1;transform:translateY(0);}
+html.js-reveal .rv-l{opacity:0;transform:translateX(-24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+html.js-reveal .rv-l.on{opacity:1;transform:translateX(0);}
+html.js-reveal .rv-r{opacity:0;transform:translateX(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+html.js-reveal .rv-r.on{opacity:1;transform:translateX(0);}
 .d1{transition-delay:0.05s;} .d2{transition-delay:0.12s;}
 .d3{transition-delay:0.19s;} .d4{transition-delay:0.26s;}
 
@@ -784,8 +793,9 @@ h2{
   h2{font-size:1.6rem;}
   .tw{font-size:1.3rem;min-height:9rem;}
   .hero-sub{font-size:0.9rem;color:rgba(234,230,220,0.85);}
+  .hero-stats{gap:1.5rem;flex-wrap:wrap;}
   .stat-num{font-size:2.2rem;}
-  .stat-label{font-size:13px;}
+  .stat-label{font-size:11px;letter-spacing:0.1em;}
   .big-stmt{font-size:1.3rem;}
   .dp{font-size:1rem;}
   .insight-label{font-size:18px;}
@@ -827,9 +837,9 @@ h2{
 }
 
 @media(prefers-reduced-motion:reduce){
-  .paper-wrap{transform:none;opacity:1;}
-  .paper-wrap.up{animation:none;}
-  .rv,.rv-l,.rv-r{opacity:1;transform:none;transition:none;}
+  html.js-reveal .paper-wrap{transform:none;opacity:1;}
+  html.js-reveal .paper-wrap.up{animation:none;}
+  html.js-reveal .rv,html.js-reveal .rv-l,html.js-reveal .rv-r{opacity:1;transform:none;transition:none;}
   .tw-c{animation:none;}
   .scroll-cue{animation:none;opacity:0.5;}
   .access-dot{animation:none;}
@@ -1234,16 +1244,27 @@ if(reduced){
 
 var pw=document.getElementById('pw');
 var risen=false;
-window.addEventListener('scroll',function(){
+function checkRise(){
   if(!risen&&window.scrollY>window.innerHeight*0.32){risen=true;pw.classList.add('up');}
-},{passive:true});
+}
+window.addEventListener('scroll',checkRise,{passive:true});
+/* Run once at init: a restored scroll position or an anchor landing does not
+   always emit a scroll event, and without this the body would stay hidden. */
+checkRise();
 
-var io=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){
-    if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
-  });
-},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
-document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(function(el){io.observe(el);});
+var revealTargets=document.querySelectorAll('.rv,.rv-l,.rv-r');
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}
+    });
+  },{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+  revealTargets.forEach(function(el){io.observe(el);});
+}else{
+  /* No observer support: show everything rather than hide it. */
+  risen=true;pw.classList.add('up');
+  revealTargets.forEach(function(el){el.classList.add('on');});
+}
 
 document.querySelectorAll('.tab[href^="#"]').forEach(function(tab){
   tab.addEventListener('click',function(e){
