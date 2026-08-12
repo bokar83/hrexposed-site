@@ -1309,20 +1309,56 @@ async function submitRequest(){
   btn.style.opacity='0.6';
   btn.style.pointerEvents='none';
 
+  /* 2026-08-11 SYS-530 + SYS-528. Two defects, both silent, both fixed here.
+
+     1. SHAPE. This used to wrap the payload as {body:{...}}. The receiving
+        automation reads its fields one level in, so the wrapper pushed every
+        field out of reach and the request landed as a row with a NULL email
+        and empty notes -- a lead with no way to reply to it. Proven on
+        2026-08-11 by posting both shapes and reading the stored rows back:
+        the flat shape stored the address, the wrapped shape stored NULL.
+        The payload is now flat.
+
+     2. SILENT SUCCESS. The old code awaited the request, threw the response
+        away without looking at it, swallowed any error, and then showed the
+        confirmation screen unconditionally. A total outage looked identical
+        to a booked session. It now checks the response and tells the person
+        the truth when it fails, with an address they can actually use. */
+  var landed = false;
   try{
-    await fetch('https://n8n.srv1040886.hstgr.cloud/webhook/hrexposed-contact',{
+    var res = await fetch('https://n8n.srv1040886.hstgr.cloud/webhook/hrexposed-contact',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({body:{
+      body:JSON.stringify({
         name:'Anonymous',
-        email:emailVal||'anonymous@hrexposed.net',
+        email:emailVal,
         organization:'Individual',
         source:'HR Exposed',
         message:message
-      }})
+      })
     });
+    var payload=null;
+    try{ payload=await res.json(); }catch(parseErr){ payload=null; }
+    landed = !!(res.ok && payload && payload.success === true);
+    if(!landed){ try{ console.error('[hrx] briefing request FAILED', res.status, payload); }catch(e){} }
   }catch(err){
-    // silently continue — lead capture may still succeed on n8n side
+    try{ console.error('[hrx] briefing request FAILED (network)', err); }catch(e){}
+  }
+
+  if(!landed){
+    btn.textContent='TRY AGAIN';
+    btn.style.opacity='1';
+    btn.style.pointerEvents='auto';
+    var errEl=document.getElementById('submit-error');
+    if(!errEl){
+      errEl=document.createElement('p');
+      errEl.id='submit-error';
+      errEl.setAttribute('role','alert');
+      errEl.style.cssText='margin-top:14px;font-size:.85rem;line-height:1.6;color:var(--stamp-red);';
+      btn.parentNode.insertBefore(errEl, btn.nextSibling);
+    }
+    errEl.textContent='That did not go through. Try once more, or write to boubacar@catalystworks.consulting and I will book it by hand.';
+    return;
   }
 
   document.getElementById('form-state').style.display='none';
